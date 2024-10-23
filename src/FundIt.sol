@@ -42,7 +42,7 @@ contract FundIt {
             address funder = s_funders[funderIndex];
             s_addressToAmountFunded[funder] = 0;
         }
-         s_funders = new address[](0);
+        s_funders = new address[](0);
 
         (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed");
@@ -59,8 +59,7 @@ contract FundIt {
     /**
      * View / Pure functions (Getters)
      */
-
-    function getAddressToAmountFunded (address fundingAddress) external view returns (uint256) {
+    function getAddressToAmountFunded(address fundingAddress) external view returns (uint256) {
         return s_addressToAmountFunded[fundingAddress];
     }
 

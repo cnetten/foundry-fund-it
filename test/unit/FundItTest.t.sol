@@ -12,7 +12,7 @@ contract FundItTest is Test {
     address USER = makeAddr("user");
     uint256 constant SEND_VALUE = 0.1 ether;
     uint256 constant STARTING_BALANCE = 10 ether;
-    uint256 constant GAS_PRICE = 1; 
+    uint256 constant GAS_PRICE = 1;
 
     function setUp() external {
         DeployFundIt deployFundIt = new DeployFundIt();
@@ -20,7 +20,7 @@ contract FundItTest is Test {
         vm.deal(USER, STARTING_BALANCE);
     }
 
-    function testMinimumDollarIsFive () public view {
+    function testMinimumDollarIsFive() public view {
         assertEq(fundIt.MINIMUM_USD(), 5e18);
     }
 
@@ -59,7 +59,7 @@ contract FundItTest is Test {
         _;
     }
 
-    function testOnlyOwnerCanWithdraw() public funded{
+    function testOnlyOwnerCanWithdraw() public funded {
         vm.prank(USER);
         vm.expectRevert();
         fundIt.withdraw();
@@ -82,7 +82,7 @@ contract FundItTest is Test {
         uint256 numberOfFunders = 10;
         uint160 startingFunderIndex = 1;
 
-        for(uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
+        for (uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
             hoax(address(i), SEND_VALUE);
             fundIt.fund{value: SEND_VALUE}();
         }
